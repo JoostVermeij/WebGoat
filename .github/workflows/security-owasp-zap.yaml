@@ -1,0 +1,21 @@
+name: do-owasp-zap
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *" # run once a day at 4 AM
+jobs:
+  scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'https://ginandjuice.shop'
+          rules_file_name: '.zap/rules.tsv'   # optional custom rules
+          cmd_options: '-a'                  # '-a' = include alpha passive scan rules
