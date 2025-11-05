@@ -1,0 +1,13 @@
+name: do-renovate
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    name: renovate
+    runs-on: ubuntu-latest
+    steps:
+     - name: Self-hosted Renovate
+       uses: renovatebot/github-action@v43.0.19
+       with:
+         configurationFile: example/renovate-config.js
+         token: ${{ secrets.RENOVATE_TOKEN }}
