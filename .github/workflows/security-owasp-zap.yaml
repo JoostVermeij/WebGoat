@@ -1,10 +1,6 @@
 name: do-owasp-zap
 on:
-  pull_request:
-  push:
   workflow_dispatch:
-  schedule:
-    - cron: "0 4 * * *" # run once a day at 4 AM
 jobs:
   scan:
     name: owasp-zap
